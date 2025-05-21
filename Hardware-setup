@@ -1,0 +1,36 @@
+# Hardware Setup Instructions
+
+## Components
+- Microcontroller board (STM32, Arduino, PIC, etc.)
+- Two push buttons
+- Two LEDs with current limiting resistors (~220Ω)
+- UART TTL converter
+- Jumper wires
+
+## Connections
+
+### Buttons
+- Connect one terminal of each button to GPIO input pin.
+- Connect other terminal to GND.
+- Enable internal pull-up resistors in software.
+
+### LEDs
+- Connect LED anode to PWM-enabled GPIO pins via resistor.
+- Connect LED cathode to GND.
+
+### UART
+- Connect UART TX and RX pins to UART TTL converter.
+- Connect UART TTL converter to PC serial port.
+
+### Power
+- Ensure microcontroller board is powered as per specifications.
+
+## Pin Mapping (Example)
+| Component     | Pin Number |
+|---------------|------------|
+| Left Button   | GPIO 12    |
+| Right Button  | GPIO 13    |
+| Left LED      | GPIO 14    |
+| Right LED     | GPIO 15    |
+| UART TX       | UART_TX    |
+| UART RX       | UART_RX    |
