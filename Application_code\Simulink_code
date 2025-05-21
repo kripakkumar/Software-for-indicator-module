@@ -1,0 +1,52 @@
+/*
+ * Simulink generated code stub for indicator application logic.
+ * Replace this file with actual generated code from MATLAB Simulink.
+ */
+
+#include <stdint.h>
+#include <stdbool.h>
+
+// Application state variables
+static bool leftIndicatorOn = false;
+static bool rightIndicatorOn = false;
+static bool hazardOn = false;
+
+// Call this every 100 ms in scheduler
+void IndicatorTask(bool leftButtonPressed, bool rightButtonPressed) {
+    static uint8_t toggleCounter = 0;
+    static uint16_t pressDurationLeft = 0;
+    static uint16_t pressDurationRight = 0;
+
+    // Logic for long press detection (1 sec = 10 counts of 100 ms)
+    if (leftButtonPressed) pressDurationLeft++; else pressDurationLeft = 0;
+    if (rightButtonPressed) pressDurationRight++; else pressDurationRight = 0;
+
+    // Detect simultaneous long press for hazard light
+    if (pressDurationLeft >= 10 && pressDurationRight >= 10) {
+        hazardOn = !hazardOn;
+        leftIndicatorOn = hazardOn;
+        rightIndicatorOn = hazardOn;
+    } else if (pressDurationLeft >= 10) {
+        if (rightIndicatorOn) rightIndicatorOn = false;
+        leftIndicatorOn = !leftIndicatorOn;
+        hazardOn = false;
+    } else if (pressDurationRight >= 10) {
+        if (leftIndicatorOn) leftIndicatorOn = false;
+        rightIndicatorOn = !rightIndicatorOn;
+        hazardOn = false;
+    }
+
+    // Toggle LEDs every 300 ms (3 scheduler ticks)
+    toggleCounter = (toggleCounter + 1) % 3;
+
+    bool ledState = (toggleCounter == 0 || toggleCounter == 2);
+
+    if (hazardOn) {
+        // Toggle both LEDs
+        // (PWM or digital write to LEDs)
+    } else {
+        // Toggle active indicator LEDs
+    }
+
+    // Send UART logs here as needed
+}
