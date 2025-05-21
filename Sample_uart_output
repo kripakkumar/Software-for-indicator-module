@@ -1,0 +1,8 @@
+Time(ms) | Event                     | Left LED | Right LED | Hazard
+--------------------------------------------------------------
+0        | System Start              | OFF      | OFF       | OFF
+1000     | Left button long press    | ON       | OFF       | OFF
+2300     | Left LED toggling         | ON       | OFF       | OFF
+3000     | Right button long press   | OFF      | ON        | OFF
+4500     | Both buttons long press   | ON       | ON        | ON
+6000     | Left button long press    | OFF      | ON        | OFF
