@@ -1,0 +1,30 @@
+# Software Document: Indicators Control over Mobile Phones (using BLE Protocol)
+
+## 1. High-Level Architecture
+- Base software drivers for UART, GPIO, PWM, Timer, Scheduler in C.
+- Application software developed in MATLAB Simulink for indicator logic.
+- BLE module integration to control indicators remotely via mobile app.
+
+## 2. Software Requirements Specification
+- Detect 1-second long presses on Left, Right buttons.
+- Toggle respective indicators.
+- Activate hazard light on simultaneous button press.
+- LEDs toggle ON-OFF-ON every 300 ms using PWM.
+- Publish status over UART.
+- 100 ms scheduler for task execution.
+- BLE commands to control indicators remotely.
+
+## 3. BLE Control Integration
+- BLE service with characteristics for left, right, and hazard indicators.
+- Mobile app sends commands via BLE.
+- MCU updates indicator states accordingly.
+
+## 4. Testing and Validation
+- Functional testing of buttons and LED toggling.
+- UART log validation.
+- BLE control functionality test.
+
+## 5. Future Work
+- Complete BLE mobile app integration.
+- Add feedback from indicators to mobile app.
+- Add security features for BLE communication.
